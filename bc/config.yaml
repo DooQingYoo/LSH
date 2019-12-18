@@ -1,0 +1,401 @@
+version: 1.0.0
+
+client:
+  logging:
+    levle: trace
+  cryptoconfig:
+    path: ${PWD}/crypto-config
+  credentialStore:
+    path: "/tmp/state-store"
+    cryptoStore:
+      path: /tmp/msp
+  BCCSP:
+    security:
+      enabled: true
+      default:
+        provider: "SW"
+      hashAlgorithm: "SHA2"
+      softVerify: true
+      level: 256
+
+channels:
+  mychannel:
+    peers:
+      peer1.LSH1:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.LSH2:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.LSH3:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.LSH4:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.LSH5:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+#      peer1.LSH6:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH7:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH8:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH9:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH10:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH11:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH12:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH13:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH14:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH15:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH16:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH17:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH18:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH19:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+#      peer1.LSH20:
+#        endorsingPeer: true
+#        chaincodeQuery: true
+#        ledgerQuery: true
+#        eventSource: true
+    policies:
+      queryChannelConfig:
+        minResponses: 1
+        maxTargets: 1
+        retryOpts:
+          attempts: 1
+          initialBackoff: 500ms
+          maxBackoff: 5s
+          backoffFactor: 2.0
+      discovery:
+        maxTargets: 2
+        retryOpts:
+          attempts: 1
+          initialBackoff: 500ms
+          maxBackoff: 5s
+          backoffFactor: 2.0
+      selection:
+        SortingStrategy: BlockHeightPriority
+        Balancer: RoundRobin
+        BlockHeightLagThreshold: 5
+      eventService:
+        resolverStrategy: PreferOrg
+        balancer: Random
+        blockHeightLagThreshold: 5
+        reconnectBlockHeightLagThreshold: 8
+        peerMonitorPeriod: 6s
+
+organizations:
+  LSH1:
+    mspid: LSH1MSP
+    cryptoPath: peerOrganizations/LSH1/users/User1@LSH1/msp
+    peers:
+      - peer1.LSH1
+  LSH2:
+    mspid: LSH2MSP
+    cryptoPath: peerOrganizations/LSH2/users/User1@LSH2/msp
+    peers:
+      - peer1.LSH2
+  LSH3:
+    mspid: LSH3MSP
+    cryptoPath: peerOrganizations/LSH3/users/User1@LSH3/msp
+    peers:
+      - peer1.LSH3
+  LSH4:
+    mspid: LSH4MSP
+    cryptoPath: peerOrganizations/LSH4/users/User1@LSH4/msp
+    peers:
+      - peer1.LSH4
+  LSH5:
+    mspid: LSH5MSP
+    cryptoPath: peerOrganizations/LSH5/users/User1@LSH5/msp
+    peers:
+      - peer1.LSH5
+#  LSH6:
+#    mspid: LSH6MSP
+#    cryptoPath: peerOrganizations/LSH6/users/User1@LSH6/msp
+#    peers:
+#      - peer1.LSH6
+#  LSH7:
+#    mspid: LSH7MSP
+#    cryptoPath: peerOrganizations/LSH7/users/User1@LSH7/msp
+#    peers:
+#      - peer1.LSH7
+#  LSH8:
+#    mspid: LSH8MSP
+#    cryptoPath: peerOrganizations/LSH8/users/User1@LSH8/msp
+#    peers:
+#      - peer1.LSH8
+#  LSH9:
+#    mspid: LSH9MSP
+#    cryptoPath: peerOrganizations/LSH9/users/User1@LSH9/msp
+#    peers:
+#      - peer1.LSH9
+#  LSH10:
+#    mspid: LSH10MSP
+#    cryptoPath: peerOrganizations/LSH10/users/User1@LSH10/msp
+#    peers:
+#      - peer1.LSH10
+#  LSH11:
+#    mspid: LSH11MSP
+#    cryptoPath: peerOrganizations/LSH11/users/User1@LSH11/msp
+#    peers:
+#      - peer1.LSH11
+#  LSH12:
+#    mspid: LSH12MSP
+#    cryptoPath: peerOrganizations/LSH12/users/User1@LSH12/msp
+#    peers:
+#      - peer1.LSH12
+#  LSH13:
+#    mspid: LSH13MSP
+#    cryptoPath: peerOrganizations/LSH13/users/User1@LSH13/msp
+#    peers:
+#      - peer1.LSH13
+#  LSH14:
+#    mspid: LSH14MSP
+#    cryptoPath: peerOrganizations/LSH14/users/User1@LSH14/msp
+#    peers:
+#      - peer1.LSH14
+#  LSH15:
+#    mspid: LSH15MSP
+#    cryptoPath: peerOrganizations/LSH15/users/User1@LSH15/msp
+#    peers:
+#      - peer1.LSH15
+#  LSH16:
+#    mspid: LSH16MSP
+#    cryptoPath: peerOrganizations/LSH16/users/User1@LSH16/msp
+#    peers:
+#      - peer1.LSH16
+#  LSH17:
+#    mspid: LSH17MSP
+#    cryptoPath: peerOrganizations/LSH17/users/User1@LSH17/msp
+#    peers:
+#      - peer1.LSH17
+#  LSH18:
+#    mspid: LSH18MSP
+#    cryptoPath: peerOrganizations/LSH18/users/User1@LSH18/msp
+#    peers:
+#      - peer1.LSH18
+#  LSH19:
+#    mspid: LSH19MSP
+#    cryptoPath: peerOrganizations/LSH19/users/User1@LSH19/msp
+#    peers:
+#      - peer1.LSH19
+#  LSH20:
+#    mspid: LSH20MSP
+#    cryptoPath: peerOrganizations/LSH20/users/User1@LSH20/msp
+#    peers:
+#      - peer1.LSH20
+  ordererorg:
+    mspID: OrdererMSP
+    cryptoPath: ordererOrganizations/LSH/users/Admin@example.com/msp
+
+peers:
+  _defalut:
+    grpcOptions:
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+  peer1.LSH1:
+    url: grpc://localhost:7051
+  peer1.LSH2:
+    url: grpc://localhost:8051
+  peer1.LSH3:
+    url: grpc://localhost:9051
+  peer1.LSH4:
+    url: grpc://localhost:10051
+  peer1.LSH5:
+    url: grpc://localhost:11051
+#  peer1.LSH6:
+#    url: grpc://localhost:12051
+#  peer1.LSH7:
+#    url: grpc://localhost:13051
+#  peer1.LSH8:
+#    url: grpc://localhost:14051
+#  peer1.LSH9:
+#    url: grpc://localhost:15051
+#  peer1.LSH10:
+#    url: grpc://localhost:16051
+#  peer1.LSH11:
+#    url: grpc://localhost:17051
+#  peer1.LSH12:
+#    url: grpc://localhost:18051
+#  peer1.LSH13:
+#    url: grpc://localhost:19051
+#  peer1.LSH14:
+#    url: grpc://localhost:20051
+#  peer1.LSH15:
+#    url: grpc://localhost:21051
+#  peer1.LSH16:
+#    url: grpc://localhost:22051
+#  peer1.LSH17:
+#    url: grpc://localhost:23051
+#  peer1.LSH18:
+#    url: grpc://localhost:24051
+#  peer1.LSH19:
+#    url: grpc://localhost:25051
+#  peer1.LSH20:
+#    url: grpc://localhost:26051
+
+orderers:
+  orderer.LSH:
+    url: localhost:7050
+    grpcOptions:
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+entityMatchers:
+  peer:
+    - pattern: peer1.LSH10
+      urlSubstitutionExp: grpc://127.0.0.1:16051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH10
+      mappedHost: peer1.LSH10
+    - pattern: peer1.LSH11
+      urlSubstitutionExp: grpc://127.0.0.1:17051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH11
+      mappedHost: peer1.LSH11
+    - pattern: peer1.LSH12
+      urlSubstitutionExp: grpc://127.0.0.1:18051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH12
+      mappedHost: peer1.LSH12
+    - pattern: peer1.LSH13
+      urlSubstitutionExp: grpc://127.0.0.1:19051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH13
+      mappedHost: peer1.LSH13
+    - pattern: peer1.LSH14
+      urlSubstitutionExp: grpc://127.0.0.1:20051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH14
+      mappedHost: peer1.LSH14
+    - pattern: peer1.LSH15
+      urlSubstitutionExp: grpc://127.0.0.1:21051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH15
+      mappedHost: peer1.LSH15
+    - pattern: peer1.LSH16
+      urlSubstitutionExp: grpc://127.0.0.1:22051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH16
+      mappedHost: peer1.LSH16
+    - pattern: peer1.LSH17
+      urlSubstitutionExp: grpc://127.0.0.1:23051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH17
+      mappedHost: peer1.LSH17
+    - pattern: peer1.LSH18
+      urlSubstitutionExp: grpc://127.0.0.1:24051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH18
+      mappedHost: peer1.LSH18
+    - pattern: peer1.LSH19
+      urlSubstitutionExp: grpc://127.0.0.1:25051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH19
+      mappedHost: peer1.LSH19
+    - pattern: peer1.LSH20
+      urlSubstitutionExp: grpc://127.0.0.1:26051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH20
+      mappedHost: peer1.LSH20
+    - pattern: peer1.LSH1
+      urlSubstitutionExp: grpc://127.0.0.1:7051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH1
+      mappedHost: peer1.LSH1
+    - pattern: peer1.LSH2
+      urlSubstitutionExp: grpc://127.0.0.1:8051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH2
+      mappedHost: peer1.LSH2
+    - pattern: peer1.LSH3
+      urlSubstitutionExp: grpc://127.0.0.1:9051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH3
+      mappedHost: peer1.LSH3
+    - pattern: peer1.LSH4
+      urlSubstitutionExp: grpc://127.0.0.1:10051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH4
+      mappedHost: peer1.LSH4
+    - pattern: peer1.LSH5
+      urlSubstitutionExp: grpc://127.0.0.1:11051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH5
+      mappedHost: peer1.LSH5
+    - pattern: peer1.LSH6
+      urlSubstitutionExp: grpc://127.0.0.1:12051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH6
+      mappedHost: peer1.LSH6
+    - pattern: peer1.LSH7
+      urlSubstitutionExp: grpc://127.0.0.1:13051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH7
+      mappedHost: peer1.LSH7
+    - pattern: peer1.LSH8
+      urlSubstitutionExp: grpc://127.0.0.1:14051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH8
+      mappedHost: peer1.LSH8
+    - pattern: peer1.LSH9
+      urlSubstitutionExp: grpc://127.0.0.1:15051
+      sslTargetOverrideUrlSubstitutionExp: peer1.LSH9
+      mappedHost: peer1.LSH9
+
+  orderer:
+    - pattern: orderer.lsh
+      urlSubstitutionExp: grpc://127.0.0.1:7050
+      sslTargetOverrideUrlSubstitutionExp: orderer.LSH
+      mappedHost: orderer.LSH

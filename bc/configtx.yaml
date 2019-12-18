@@ -1,0 +1,229 @@
+Organizations:
+  - &Orderer
+    Name: Orderer
+    ID: OrdererMSP
+    MSPDir: crypto-config/ordererOrganizations/LSH/msp
+  - &LSH1
+    Name: LSH1
+    ID: LSH1MSP
+    MSPDir: crypto-config/peerOrganizations/LSH1/msp
+    AnchorPeers:
+      - Host: peer1.LSH1
+        Port: 7051
+  - &LSH2
+    Name: LSH2
+    ID: LSH2MSP
+    MSPDir: crypto-config/peerOrganizations/LSH2/msp
+    AnchorPeers:
+      - Host: peer1.LSH2
+        Port: 8051
+  - &LSH3
+    Name: LSH3
+    ID: LSH3MSP
+    MSPDir: crypto-config/peerOrganizations/LSH3/msp
+    AnchorPeers:
+      - Host: peer1.LSH3
+        Port: 9051
+  - &LSH4
+    Name: LSH4
+    ID: LSH4MSP
+    MSPDir: crypto-config/peerOrganizations/LSH4/msp
+    AnchorPeers:
+      - Host: peer1.LSH4
+        Port: 10051
+  - &LSH5
+    Name: LSH5
+    ID: LSH5MSP
+    MSPDir: crypto-config/peerOrganizations/LSH5/msp
+    AnchorPeers:
+      - Host: peer1.LSH5
+        Port: 11051
+  - &LSH6
+    Name: LSH6
+    ID: LSH6MSP
+    MSPDir: crypto-config/peerOrganizations/LSH6/msp
+    AnchorPeers:
+      - Host: peer1.LSH6
+        Port: 12051
+  - &LSH7
+    Name: LSH7
+    ID: LSH7MSP
+    MSPDir: crypto-config/peerOrganizations/LSH7/msp
+    AnchorPeers:
+      - Host: peer1.LSH7
+        Port: 13051
+  - &LSH8
+    Name: LSH8
+    ID: LSH8MSP
+    MSPDir: crypto-config/peerOrganizations/LSH8/msp
+    AnchorPeers:
+      - Host: peer1.LSH8
+        Port: 14051
+  - &LSH9
+    Name: LSH9
+    ID: LSH9MSP
+    MSPDir: crypto-config/peerOrganizations/LSH9/msp
+    AnchorPeers:
+      - Host: peer1.LSH9
+        Port: 15051
+  - &LSH10
+    Name: LSH10
+    ID: LSH10MSP
+    MSPDir: crypto-config/peerOrganizations/LSH10/msp
+    AnchorPeers:
+      - Host: peer1.LSH10
+        Port: 16051
+  - &LSH11
+    Name: LSH11
+    ID: LSH11MSP
+    MSPDir: crypto-config/peerOrganizations/LSH11/msp
+    AnchorPeers:
+      - Host: peer1.LSH11
+        Port: 17051
+  - &LSH12
+    Name: LSH12
+    ID: LSH12MSP
+    MSPDir: crypto-config/peerOrganizations/LSH12/msp
+    AnchorPeers:
+      - Host: peer1.LSH12
+        Port: 18051
+  - &LSH13
+    Name: LSH13
+    ID: LSH13MSP
+    MSPDir: crypto-config/peerOrganizations/LSH13/msp
+    AnchorPeers:
+      - Host: peer1.LSH13
+        Port: 19051
+  - &LSH14
+    Name: LSH14
+    ID: LSH14MSP
+    MSPDir: crypto-config/peerOrganizations/LSH14/msp
+    AnchorPeers:
+      - Host: peer1.LSH14
+        Port: 20051
+  - &LSH15
+    Name: LSH15
+    ID: LSH15MSP
+    MSPDir: crypto-config/peerOrganizations/LSH15/msp
+    AnchorPeers:
+      - Host: peer1.LSH15
+        Port: 21051
+  - &LSH16
+    Name: LSH16
+    ID: LSH16MSP
+    MSPDir: crypto-config/peerOrganizations/LSH16/msp
+    AnchorPeers:
+      - Host: peer1.LSH16
+        Port: 22051
+  - &LSH17
+    Name: LSH17
+    ID: LSH17MSP
+    MSPDir: crypto-config/peerOrganizations/LSH17/msp
+    AnchorPeers:
+      - Host: peer1.LSH17
+        Port: 23051
+  - &LSH18
+    Name: LSH18
+    ID: LSH18MSP
+    MSPDir: crypto-config/peerOrganizations/LSH18/msp
+    AnchorPeers:
+      - Host: peer1.LSH18
+        Port: 24051
+  - &LSH19
+    Name: LSH19
+    ID: LSH19MSP
+    MSPDir: crypto-config/peerOrganizations/LSH19/msp
+    AnchorPeers:
+      - Host: peer1.LSH19
+        Port: 25051
+  - &LSH20
+    Name: LSH20
+    ID: LSH20MSP
+    MSPDir: crypto-config/peerOrganizations/LSH20/msp
+    AnchorPeers:
+      - Host: peer1.LSH20
+        Port: 26051
+
+Capabilities:
+  Global: &ChannelCapabilities
+    V1_3: true
+
+  Orderer: &OrdererCapabilities
+    V1_1: true
+
+  Aplication: &ApplicationCapabilities
+    V1_3: true
+
+Application: &ApplicationDefaults
+  Organizations:
+
+Orderer: &OrdererDefault
+  OrdererType: solo
+  Addresses:
+    - orderer.LSH:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+
+Profiles:
+  Genesis:
+    Capabilities:
+      <<: *ChannelCapabilities
+    Orderer:
+      <<: *OrdererDefault
+      Organizations:
+        - *Orderer
+      Capabilities:
+        <<: *OrdererCapabilities
+    Consortiums:
+      SampleConsortium:
+        Organizations:
+          - *LSH1
+          - *LSH2
+          - *LSH3
+          - *LSH4
+          - *LSH5
+          - *LSH6
+          - *LSH7
+          - *LSH8
+          - *LSH9
+          - *LSH10
+          - *LSH11
+          - *LSH12
+          - *LSH13
+          - *LSH14
+          - *LSH15
+          - *LSH16
+          - *LSH17
+          - *LSH18
+          - *LSH19
+          - *LSH20
+  MyChannel:
+    Consortium: SampleConsortium
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *LSH1
+        - *LSH2
+        - *LSH3
+        - *LSH4
+        - *LSH5
+        - *LSH6
+        - *LSH7
+        - *LSH8
+        - *LSH9
+        - *LSH10
+        - *LSH11
+        - *LSH12
+        - *LSH13
+        - *LSH14
+        - *LSH15
+        - *LSH16
+        - *LSH17
+        - *LSH18
+        - *LSH19
+        - *LSH20
+      Capabilities:
+        <<: *ApplicationCapabilities

@@ -1,0 +1,521 @@
+version: '2'
+networks:
+  lshnet:
+
+services:
+
+  orderer.LSH:
+    container_name: orderer.LSH
+    image: hyperledger/fabric-orderer
+    environment:
+      - FABRIC_LOGGING_SPEC=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=false
+      # 不使用TLS，但是保留以便未来需要用
+#      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+#      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+#      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./crypto-config/ordererOrganizations/LSH/orderers/orderer.LSH/msp:/var/hyperledger/orderer/msp
+#      - ./crypto-config/ordererOrganizations/Brand/orderers/orderer.Brand/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7050:7050
+    networks:
+      - lshnet
+
+  peer1.LSH1:
+    container_name: peer1.LSH1
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH1
+      - CORE_PEER_ADDRESS=peer1.LSH1:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH1:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH1:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH1:7051
+      - CORE_PEER_LOCALMSPID=LSH1MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH1/peers/peer1.LSH1/msp:/etc/hyperledger/fabric/msp
+#      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 7051:7051
+    networks:
+      - lshnet
+        
+  peer1.LSH2:
+    container_name: peer1.LSH2
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH2
+      - CORE_PEER_ADDRESS=peer1.LSH2:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH2:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH2:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH2:8051
+      - CORE_PEER_LOCALMSPID=LSH2MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH2/peers/peer1.LSH2/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 8051:8051
+    networks:
+      - lshnet
+        
+  peer1.LSH3:
+    container_name: peer1.LSH3
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH3
+      - CORE_PEER_ADDRESS=peer1.LSH3:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH3:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH3:9051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH3:9051
+      - CORE_PEER_LOCALMSPID=LSH3MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH3/peers/peer1.LSH3/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 9051:9051
+    networks:
+      - lshnet  
+        
+  peer1.LSH4:
+    container_name: peer1.LSH4
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH4
+      - CORE_PEER_ADDRESS=peer1.LSH4:10051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH4:10052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH4:10051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH4:10051
+      - CORE_PEER_LOCALMSPID=LSH4MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH4/peers/peer1.LSH4/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 10051:10051
+    networks:
+      - lshnet
+        
+  peer1.LSH5:
+    container_name: peer1.LSH5
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH5
+      - CORE_PEER_ADDRESS=peer1.LSH5:11051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH5:11052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH5:11051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH5:11051
+      - CORE_PEER_LOCALMSPID=LSH5MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH5/peers/peer1.LSH5/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 11051:11051
+    networks:
+      - lshnet
+        
+  peer1.LSH6:
+    container_name: peer1.LSH6
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH6
+      - CORE_PEER_ADDRESS=peer1.LSH6:12051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:12051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH6:12052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:12052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH6:12051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH6:12051
+      - CORE_PEER_LOCALMSPID=LSH6MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH6/peers/peer1.LSH6/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 12051:12051
+    networks:
+      - lshnet        
+        
+  peer1.LSH7:
+    container_name: peer1.LSH7
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH7
+      - CORE_PEER_ADDRESS=peer1.LSH7:13051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:13051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH7:13052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:13052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH7:13051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH7:13051
+      - CORE_PEER_LOCALMSPID=LSH7MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH7/peers/peer1.LSH7/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 13051:13051
+    networks:
+      - lshnet       
+        
+  peer1.LSH8:
+    container_name: peer1.LSH8
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH8
+      - CORE_PEER_ADDRESS=peer1.LSH8:14051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:14051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH8:14052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:14052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH8:14051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH8:14051
+      - CORE_PEER_LOCALMSPID=LSH8MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH8/peers/peer1.LSH8/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 14051:14051
+    networks:
+      - lshnet        
+        
+  peer1.LSH9:
+    container_name: peer1.LSH9
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH9
+      - CORE_PEER_ADDRESS=peer1.LSH9:15051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:15051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH9:15052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:15052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH9:15051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH9:15051
+      - CORE_PEER_LOCALMSPID=LSH9MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH9/peers/peer1.LSH9/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 15051:15051
+    networks:
+      - lshnet        
+        
+  peer1.LSH10:
+    container_name: peer1.LSH10
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH10
+      - CORE_PEER_ADDRESS=peer1.LSH10:16051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:16051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH10:16052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:16052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH10:16051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH10:16051
+      - CORE_PEER_LOCALMSPID=LSH10MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH10/peers/peer1.LSH10/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 16051:16051
+    networks:
+      - lshnet        
+        
+  peer1.LSH11:
+    container_name: peer1.LSH11
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH11
+      - CORE_PEER_ADDRESS=peer1.LSH11:17051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:17051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH11:17052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:17052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH11:17051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH11:17051
+      - CORE_PEER_LOCALMSPID=LSH11MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH11/peers/peer1.LSH11/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 17051:17051
+    networks:
+      - lshnet        
+        
+  peer1.LSH12:
+    container_name: peer1.LSH12
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH12
+      - CORE_PEER_ADDRESS=peer1.LSH12:18051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:18051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH12:18052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:18052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH12:18051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH12:18051
+      - CORE_PEER_LOCALMSPID=LSH12MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH12/peers/peer1.LSH12/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 18051:18051
+    networks:
+      - lshnet
+        
+  peer1.LSH13:
+    container_name: peer1.LSH13
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH13
+      - CORE_PEER_ADDRESS=peer1.LSH13:19051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:19051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH13:19052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:19052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH13:19051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH13:19051
+      - CORE_PEER_LOCALMSPID=LSH13MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH13/peers/peer1.LSH13/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 19051:19051
+    networks:
+      - lshnet        
+        
+  peer1.LSH14:
+    container_name: peer1.LSH14
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH14
+      - CORE_PEER_ADDRESS=peer1.LSH14:20051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:20051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH14:20052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:20052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH14:20051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH14:20051
+      - CORE_PEER_LOCALMSPID=LSH14MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH14/peers/peer1.LSH14/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 20051:20051
+    networks:
+      - lshnet        
+        
+  peer1.LSH15:
+    container_name: peer1.LSH15
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH15
+      - CORE_PEER_ADDRESS=peer1.LSH15:21051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:21051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH15:21052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:21052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH15:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH15:21051
+      - CORE_PEER_LOCALMSPID=LSH15MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH15/peers/peer1.LSH15/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 21051:21051
+    networks:
+      - lshnet
+        
+  peer1.LSH16:
+    container_name: peer1.LSH16
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH16
+      - CORE_PEER_ADDRESS=peer1.LSH16:22051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:22051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH16:22052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:22052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH16:22051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH16:22051
+      - CORE_PEER_LOCALMSPID=LSH16MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH16/peers/peer1.LSH16/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 22051:22051
+    networks:
+      - lshnet        
+        
+  peer1.LSH17:
+    container_name: peer1.LSH17
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH17
+      - CORE_PEER_ADDRESS=peer1.LSH17:23051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:23051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH17:23052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:23052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH17:23051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH17:23051
+      - CORE_PEER_LOCALMSPID=LSH17MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH17/peers/peer1.LSH17/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 23051:23051
+    networks:
+      - lshnet        
+        
+  peer1.LSH18:
+    container_name: peer1.LSH18
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH18
+      - CORE_PEER_ADDRESS=peer1.LSH18:24051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:24051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH18:24052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:24052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH18:24051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH18:24051
+      - CORE_PEER_LOCALMSPID=LSH18MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH18/peers/peer1.LSH18/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 24051:24051
+    networks:
+      - lshnet        
+        
+  peer1.LSH19:
+    container_name: peer1.LSH19
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH19
+      - CORE_PEER_ADDRESS=peer1.LSH19:25051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:25051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH19:25052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:25052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH19:25051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH19:25051
+      - CORE_PEER_LOCALMSPID=LSH19MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH19/peers/peer1.LSH19/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 25051:25051
+    networks:
+      - lshnet        
+        
+  peer1.LSH20:
+    container_name: peer1.LSH20
+    extends:
+      file: peer-base.yaml
+      service: all-peers
+    environment:
+      - CORE_PEER_ID=peer1.LSH20
+      - CORE_PEER_ADDRESS=peer1.LSH20:26051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:26051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.LSH20:26052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:26052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.LSH20:26051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.LSH20:26051
+      - CORE_PEER_LOCALMSPID=LSH20MSP
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./crypto-config/peerOrganizations/LSH20/peers/peer1.LSH20/msp:/etc/hyperledger/fabric/msp
+    #      - ./crypto-config/peerOrganizations/Brand/peers/peer0.Brand/tls:/etc/hyperledger/fabric/tls
+    ports:
+      - 26051:26051
+    networks:
+      - lshnet
+
+  cli:
+    container_name: cli
+    image: hyperledger/fabric-tools-new
+    tty: true
+    stdin_open: true
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=INFO
+      - CORE_PEER_ID=cli
+      - CORE_PEER_ADDRESS=peer1.LSH1:7051
+      - CORE_PEER_LOCALMSPID=LSH1MSP
+      - CORE_PEER_TLS_ENABLED=false
+#      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/DooTest/peers/peer0.DooTest/tls/server.crt
+#      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/DooTest/peers/peer0.DooTest/tls/server.key
+#      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/DooTest/peers/peer0.DooTest/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/LSH1/users/Admin@LSH1/msp
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: /bin/bash
+    volumes:
+      - /var/run:/host/var/run/
+      - ./cli.sh:/opt/gopath/src/github.com/hyperledger/fabric/peer/cli.sh
+      - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+      - ./chaincode:/opt/gopath/src/chaincode
+      - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+      - ./privconf.json:/opt/gopath/src/github.com/hyperledger/fabric/peer/privconf.json
+      - /home/forsim/go/src/github.com/Nik-U/pbc:/opt/gopath/src/github.com/Nik-U/pbc
+    networks:
+      - lshnet

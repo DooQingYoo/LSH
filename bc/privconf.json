@@ -1,0 +1,162 @@
+[
+  {
+    "name": "collection1",
+    "policy": "OR('LSH1MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection2",
+    "policy": "OR('LSH2MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection3",
+    "policy": "OR('LSH3MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection4",
+    "policy": "OR('LSH4MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection5",
+    "policy": "OR('LSH5MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection6",
+    "policy": "OR('LSH6MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection7",
+    "policy": "OR('LSH7MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection8",
+    "policy": "OR('LSH8MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection9",
+    "policy": "OR('LSH9MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection10",
+    "policy": "OR('LSH10MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection11",
+    "policy": "OR('LSH11MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection12",
+    "policy": "OR('LSH12MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection13",
+    "policy": "OR('LSH13MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection14",
+    "policy": "OR('LSH14MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection15",
+    "policy": "OR('LSH15MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection16",
+    "policy": "OR('LSH16MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection17",
+    "policy": "OR('LSH17MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection18",
+    "policy": "OR('LSH18MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection19",
+    "policy": "OR('LSH19MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  },
+  {
+    "name": "collection20",
+    "policy": "OR('LSH20MSP.member')",
+    "requiredPeerCount": 0,
+    "maxPeerCount": 0,
+    "blockToLive":0,
+    "memberOnlyRead": true
+  }
+]

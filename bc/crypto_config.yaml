@@ -1,0 +1,167 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: LSH
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: Org1
+    Domain: LSH1
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org2
+    Domain: LSH2
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org3
+    Domain: LSH3
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org4
+    Domain: LSH4
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org5
+    Domain: LSH5
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org6
+    Domain: LSH6
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org7
+    Domain: LSH7
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org8
+    Domain: LSH8
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org9
+    Domain: LSH9
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org10
+    Domain: LSH10
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org11
+    Domain: LSH11
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org12
+    Domain: LSH12
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org13
+    Domain: LSH13
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org14
+    Domain: LSH14
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org15
+    Domain: LSH15
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org16
+    Domain: LSH16
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org17
+    Domain: LSH17
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org18
+    Domain: LSH18
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org19
+    Domain: LSH19
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
+  - Name: Org20
+    Domain: LSH20
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      Start: 1
+    Users:
+      Count: 1
